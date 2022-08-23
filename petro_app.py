@@ -33,5 +33,3 @@ if options == "Data Information":
     files = [
         st.file_uploader(f"Upload the las file of well {n + 1}") for n in range(n_wells)
     ]
-
-elif options == "Logs Visualization":
