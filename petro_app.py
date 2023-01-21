@@ -7,7 +7,6 @@ import welly
 import lasio
 from streamlit_option_menu import option_menu
 from PIL import Image
-from pathlib import Path
 from io import StringIO
 
 # Insert icon of web app
@@ -36,5 +35,5 @@ if options == "Data Information":
     ]
 
     if files is not None:
-        stringio = [StringIO(files[0].getvalue().decode("utf-8")) for log in files]
-        well = [st.write(lasio.read(log).df()) for log in stringio]
+        stringio = [StringIO(log.getvalue().decode("utf-8")) for log in files]
+        well_logs = [st.write(lasio.read(log).df()) for log in stringio]
