@@ -8,6 +8,7 @@ import lasio
 from streamlit_option_menu import option_menu
 from PIL import Image
 from pathlib import Path
+from io import StringIO
 
 # Insert icon of web app
 icon = Image.open("resources/logs.png")
@@ -33,3 +34,7 @@ if options == "Data Information":
     files = [
         st.file_uploader(f"Upload the las file of well {n + 1}") for n in range(n_wells)
     ]
+
+    if files is not None:
+        stringio = [StringIO(files[0].getvalue().decode("utf-8")) for log in files]
+        well = [st.write(lasio.read(log).df()) for log in stringio]
