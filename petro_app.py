@@ -28,7 +28,7 @@ with st.sidebar:
 
 # Options
 if options == "Data Information":
-    # number of file to upload
+    # number of files to upload
     n_wells = int(st.number_input("Enter the well logs files"))
     files = [
         st.file_uploader(f"Upload the las file of well {n + 1}") for n in range(n_wells)
@@ -37,3 +37,15 @@ if options == "Data Information":
     if files is not None:
         stringio = [StringIO(log.getvalue().decode("utf-8")) for log in files]
         well_logs = [st.write(lasio.read(log).df()) for log in stringio]
+
+elif options == "Logs Visualization":
+    # number of files to upload
+    n_wells = int(st.number_input("Enter the well logs files"))
+    files = [
+        st.file_uploader(f"Upload the las file of well {n + 1}") for n in range(n_wells)
+    ]
+    if files is not None:
+        stringio = [StringIO(log.getvalue().decode("utf-8")) for log in files]
+        las_data = [lasio.read(data) for data in stringio]
+        well_logs = [log.df() for log in las_data]
+        logs = {f"{data.well.keys()}": df for data in las_data for df in well_logs}
