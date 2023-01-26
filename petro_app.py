@@ -48,4 +48,6 @@ elif options == "Logs Visualization":
         stringio = [StringIO(log.getvalue().decode("utf-8")) for log in files]
         las_data = [lasio.read(data) for data in stringio]
         well_logs = [log.df() for log in las_data]
-        logs = {f"{data.well.keys()}": df for data in las_data for df in well_logs}
+        wells = [st.text_input(f"Name of the well {well + 1}: ") for well in range(len(las_data))]
+        logs = {data: df for data in wells for df in well_logs}
+
