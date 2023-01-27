@@ -52,7 +52,7 @@ elif options == "Logs Visualization":
 
         wells = [st.text_input(f"Name of the well {well + 1}: ") for well in range(len(las_data))]
         logs = {well: df for well, df in zip(wells, df_logs)}
-        st.write(logs)
+        #st.write(logs)
 
         if st.checkbox("Well logs"):
             multi_well(logs, temp_1)
