@@ -48,10 +48,10 @@ elif options == "Logs Visualization":
     if files is not None:
         stringio = [StringIO(log.getvalue().decode("utf-8")) for log in files]
         las_data = [lasio.read(data) for data in stringio]
-        well_logs = [log.df() for log in las_data]
+        df_logs = [log.df() for log in las_data]
 
         wells = [st.text_input(f"Name of the well {well + 1}: ") for well in range(len(las_data))]
-        logs = {well: df for well, df in zip(wells, well_logs)}
+        logs = {well: df for well, df in zip(wells, df_logs)}
         st.write(logs)
 
         if st.checkbox("Well logs"):
