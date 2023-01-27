@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import lasio
 import welly
 from pathlib import Path
+import streamlit as st
 
 
 # Function to plot with Welly and Matplotlib any log curve
@@ -46,9 +47,10 @@ def temp_1(fig,
     axs[0].set_ylabel("Depth (m)")
 
 
-def multi_well(figsize, data, template):
-    fig_all = plt.figure(figsize=figsize)
+def multi_well(data, template):
+    fig_all = plt.figure(figsize=(12, 10))
     subfigs = fig_all.subfigures(1, len(data), wspace=2)
     for idx, (well_name, df) in enumerate(data.items()):
         template(subfigs[idx], df, "KLOGH", "PHIF", "SW")
         subfigs[idx].suptitle(well_name)
+    st.pyplot(fig_all)
