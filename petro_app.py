@@ -41,6 +41,7 @@ if options == "Data Information":
             well_logs = [st.write(lasio.read(log).df()) for log in stringio]
         except AttributeError:
             print("")
+
 elif options == "Logs Visualization":
     # number of files to upload
     n_wells = int(st.number_input("Enter the well logs files"))
