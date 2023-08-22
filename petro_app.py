@@ -36,9 +36,11 @@ if options == "Data Information":
     ]
 
     if files is not None:
-        stringio = [StringIO(log.getvalue().decode("utf-8")) for log in files]
-        well_logs = [st.write(lasio.read(log).df()) for log in stringio]
-
+        try:
+            stringio = [StringIO(log.getvalue().decode("utf-8")) for log in files]
+            well_logs = [st.write(lasio.read(log).df()) for log in stringio]
+        except AttributeError:
+            print("")
 elif options == "Logs Visualization":
     # number of files to upload
     n_wells = int(st.number_input("Enter the well logs files"))
