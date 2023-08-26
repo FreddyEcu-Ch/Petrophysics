@@ -2,3 +2,4 @@ streamlit==1.17.0
 streamlit-option-menu==0.3.2
 lasio==0.30
 pillow==9.4.0
+matplotlib==3.5.3
